@@ -29,11 +29,22 @@ If you would rather not pipe a script, the whole install is a single file:
 mkdir -p ~/.claude/commands && curl -fsSL https://raw.githubusercontent.com/gvoze32/hold-that-thought/main/commands/q.md -o ~/.claude/commands/q.md
 ```
 
-**Uninstall:** `rm ~/.claude/commands/q.md`
+### Update, check, uninstall
+
+```bash
+# Update: same as install; it does nothing if you are already current
+curl -fsSL https://raw.githubusercontent.com/gvoze32/hold-that-thought/main/install.sh | bash
+
+# Check for updates (exit code: 0 = up to date, 1 = update available, 2 = not installed)
+curl -fsSL https://raw.githubusercontent.com/gvoze32/hold-that-thought/main/install.sh | bash -s -- --check
+
+# Uninstall (or just: rm ~/.claude/commands/q.md)
+curl -fsSL https://raw.githubusercontent.com/gvoze32/hold-that-thought/main/install.sh | bash -s -- --uninstall
+```
 
 **Project-only:** put the file in `<project>/.claude/commands/q.md` instead.
 
-**From a clone:** `./install.sh` symlinks the repo copy, so your edits apply live. `./uninstall.sh` removes it.
+**From a clone:** `./install.sh` symlinks the repo copy, so your edits apply live. Update with `git pull`. `./install.sh --check` and `./install.sh --uninstall` work there too.
 
 ## How it works
 
