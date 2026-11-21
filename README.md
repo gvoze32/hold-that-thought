@@ -15,17 +15,25 @@ When you type a message while Claude Code is working, it gets injected at the ne
 
 ## Install
 
+One line, no clone:
+
 ```bash
-git clone https://github.com/gvoze32/hold-that-thought.git
-cd hold-that-thought
-./install.sh
+curl -fsSL https://raw.githubusercontent.com/gvoze32/hold-that-thought/main/install.sh | bash
 ```
 
-This symlinks `commands/q.md` into `~/.claude/commands/` (it respects `CLAUDE_CONFIG_DIR`). If a non-symlink `q.md` already exists there, it is backed up first. Start a new Claude Code session afterwards.
+Then start a new Claude Code session. The installer drops `q.md` into `~/.claude/commands/` (it respects `CLAUDE_CONFIG_DIR`). If a different `q.md` is already there, it is backed up first.
 
-To remove it, run `./uninstall.sh`.
+If you would rather not pipe a script, the whole install is a single file:
 
-**Project-only install:** copy `commands/q.md` to `<project>/.claude/commands/q.md`.
+```bash
+mkdir -p ~/.claude/commands && curl -fsSL https://raw.githubusercontent.com/gvoze32/hold-that-thought/main/commands/q.md -o ~/.claude/commands/q.md
+```
+
+**Uninstall:** `rm ~/.claude/commands/q.md`
+
+**Project-only:** put the file in `<project>/.claude/commands/q.md` instead.
+
+**From a clone:** `./install.sh` symlinks the repo copy, so your edits apply live. `./uninstall.sh` removes it.
 
 ## How it works
 
